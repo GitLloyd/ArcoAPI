@@ -10,34 +10,15 @@ using Microsoft.Data.SqlClient;
 
 namespace ArcoApi.Controllers
 {
-    [Route("qlikapi")]
+    [Route("viewqlikapi")]
     [ApiController]
     public class QlikController : ControllerBase, IQlikController
     {
-        private readonly IBusinessDatiPraticaAudit _businessDatiPraticaAudit;
-        private readonly IBusinessAuditOperativoAccesso _businessAuditOperativoAccesso;
-        private readonly IBusinessPraticaGruppo _businessPraticaGruppo;
-        private readonly IBusinessRilievo _businessRilievo;
-        private readonly IBusinessTeam _businessTeam;
-        private readonly IBusinessDomandaValore _businessDomandaValore;
-        private readonly IBusinessSede _businessSede;
+        private readonly IQlikBusiness _qlikBusiness;
 
-        public QlikController(
-            IBusinessDatiPraticaAudit businessDatiPraticaAudit,
-            IBusinessAuditOperativoAccesso businessAuditOperativoAccesso,
-            IBusinessPraticaGruppo businessPraticaGruppo,
-            IBusinessRilievo businessRilievo,
-            IBusinessTeam businessTeam,
-            IBusinessDomandaValore businessDomandaValore,
-            IBusinessSede businessSede)
+        public QlikController(IQlikBusiness qlikBusiness)
         {
-            _businessDatiPraticaAudit = businessDatiPraticaAudit;
-            _businessAuditOperativoAccesso = businessAuditOperativoAccesso;
-            _businessPraticaGruppo = businessPraticaGruppo;
-            _businessRilievo = businessRilievo;
-            _businessTeam = businessTeam;
-            _businessDomandaValore = businessDomandaValore;
-            _businessSede = businessSede;
+            _qlikBusiness = qlikBusiness;
 
         }
 
@@ -51,7 +32,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessDatiPraticaAudit.DatiPraticaAuditGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.DatiPraticaAuditGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -77,7 +58,7 @@ namespace ArcoApi.Controllers
 
         private string DatiPraticaAuditGetTotaleElementiVista()
         {
-            return _businessDatiPraticaAudit.DatiPraticaAuditGetTotaleElementiVista();
+            return _qlikBusiness.DatiPraticaAuditGetTotaleElementiVista();
         }
 
 
@@ -90,7 +71,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessTeam.TeamGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.TeamGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -116,7 +97,7 @@ namespace ArcoApi.Controllers
 
         private string TeamGetTotaleElementiVista()
         {
-            return _businessTeam.TeamGetTotaleElementiVista();
+            return _qlikBusiness.TeamGetTotaleElementiVista();
         }
 
 
@@ -129,7 +110,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessAuditOperativoAccesso.AuditOperativoAccessoAuditGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.AuditOperativoAccessoAuditGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -155,7 +136,7 @@ namespace ArcoApi.Controllers
 
         private string AuditOperativoAccessoGetTotaleElementiVista()
         {
-            return _businessAuditOperativoAccesso.AuditOperativoAccessoAuditGetTotaleElementiVista();
+            return _qlikBusiness.AuditOperativoAccessoAuditGetTotaleElementiVista();
         }
 
 
@@ -167,7 +148,7 @@ namespace ArcoApi.Controllers
             var result = new RisultatoElementiPagina<DomandaValore>();
             try
             {
-                result.ElementiPagina = _businessDomandaValore.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -193,7 +174,7 @@ namespace ArcoApi.Controllers
 
         private string DomandaValoreGetTotaleElementiVista()
         {
-            return _businessDomandaValore.DomandaValoreGetTotaleElementiVista();
+            return _qlikBusiness.DomandaValoreGetTotaleElementiVista();
         }
 
 
@@ -206,7 +187,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessPraticaGruppo.PraticaGruppoAuditGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.PraticaGruppoAuditGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -232,7 +213,7 @@ namespace ArcoApi.Controllers
 
         private string PraticaGruppoGetTotaleElementiVista()
         {
-            return _businessPraticaGruppo.PraticaGruppoAuditGetTotaleElementiVista();
+            return _qlikBusiness.PraticaGruppoAuditGetTotaleElementiVista();
         }
 
 
@@ -245,7 +226,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessRilievo.RilievoGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.RilievoGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -271,7 +252,7 @@ namespace ArcoApi.Controllers
 
         private string RilievoGetTotaleElementiVista()
         {
-            return _businessRilievo.RilievoGetTotaleElementiVista();
+            return _qlikBusiness.RilievoGetTotaleElementiVista();
         }
 
 
@@ -284,7 +265,7 @@ namespace ArcoApi.Controllers
 
             try
             {
-                result.ElementiPagina = _businessSede.SedeGetElementiPagina(numeroElementi, indicePagina);
+                result.ElementiPagina = _qlikBusiness.SedeGetElementiPagina(numeroElementi, indicePagina);
             }
             catch (ArgumentException argEx)
             {
@@ -310,7 +291,7 @@ namespace ArcoApi.Controllers
 
         private string SedeGetTotaleElementiVista()
         {
-            return _businessSede.SedeGetTotaleElementiVista();
+            return _qlikBusiness.SedeGetTotaleElementiVista();
         }
 
 
