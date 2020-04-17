@@ -35,6 +35,8 @@ namespace ArcoApi
             services.AddSingleton<IBusinessDomandaValore, BusinessDomandaValore>();
             services.AddSingleton<IBusinessSede, BusinessSede>();
 
+            services.AddSingleton<IQlikBusiness, QlikBusiness>();
+
             services.AddControllers();
         }
 
