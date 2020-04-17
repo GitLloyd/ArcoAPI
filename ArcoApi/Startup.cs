@@ -32,6 +32,8 @@ namespace ArcoApi
             services.AddSingleton<IBusinessPraticaGruppo, BusinessPraticaGruppo>();
             services.AddSingleton<IBusinessRilievo, BusinessRilievo>();
             services.AddSingleton<IBusinessTeam, BusinessTeam>();
+            services.AddSingleton<IBusinessDomandaValore, BusinessDomandaValore>();
+            services.AddSingleton<IBusinessSede, BusinessSede>();
 
             services.AddControllers();
         }
