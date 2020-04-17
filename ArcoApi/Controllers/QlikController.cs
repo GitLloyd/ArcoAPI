@@ -19,19 +19,26 @@ namespace ArcoApi.Controllers
         private readonly IBusinessPraticaGruppo _businessPraticaGruppo;
         private readonly IBusinessRilievo _businessRilievo;
         private readonly IBusinessTeam _businessTeam;
+        private readonly IBusinessDomandaValore _businessDomandaValore;
+        private readonly IBusinessSede _businessSede;
 
         public QlikController(
             IBusinessDatiPraticaAudit businessDatiPraticaAudit,
             IBusinessAuditOperativoAccesso businessAuditOperativoAccesso,
             IBusinessPraticaGruppo businessPraticaGruppo,
             IBusinessRilievo businessRilievo,
-            IBusinessTeam businessTeam)
+            IBusinessTeam businessTeam,
+            IBusinessDomandaValore businessDomandaValore,
+            IBusinessSede businessSede)
         {
             _businessDatiPraticaAudit = businessDatiPraticaAudit;
             _businessAuditOperativoAccesso = businessAuditOperativoAccesso;
             _businessPraticaGruppo = businessPraticaGruppo;
             _businessRilievo = businessRilievo;
             _businessTeam = businessTeam;
+            _businessDomandaValore = businessDomandaValore;
+            _businessSede = businessSede;
+
         }
 
 
@@ -152,42 +159,42 @@ namespace ArcoApi.Controllers
         }
 
 
-        //// Domanda Valore
-        //[HttpPost]
-        //[Route("domandavalore")]
-        //public RisultatoElementiPagina<DomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
-        //{
-        //    var result = new RisultatoElementiPagina<DomandaValore>();
-            //try
-            //{
-            //    result.ElementiPagina = _businessPraticaGruppo.DomandaValoreAuditGetElementiPagina(numeroElementi, indicePagina);
-            //}
-            //catch (ArgumentException argEx)
-            //{
-            //    Response.StatusCode = 400;
-            //    result.CodiceMessaggio = 501;
-            //    result.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
-            //}
-            //catch (SqlException sqlEx)
-            //{
-            //    Response.StatusCode = 500;
-            //    result.CodiceMessaggio = 502;
-            //    result.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.StatusCode = 500;
-            //    result.CodiceMessaggio = 500;
-            //    result.Messaggio = $"Errore generico: {ex.Message}";
-        //}
+        // Domanda Valore
+        [HttpPost]
+        [Route("domandavalore")]
+        public RisultatoElementiPagina<DomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
+        {
+            var result = new RisultatoElementiPagina<DomandaValore>();
+            try
+            {
+                result.ElementiPagina = _businessDomandaValore.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
+            }
+            catch (ArgumentException argEx)
+            {
+                Response.StatusCode = 400;
+                result.RisultatoRichiesta.CodiceMessaggio = 501;
+                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+            }
+            catch (SqlException sqlEx)
+            {
+                Response.StatusCode = 500;
+                result.RisultatoRichiesta.CodiceMessaggio = 502;
+                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                result.RisultatoRichiesta.CodiceMessaggio = 500;
+                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+            }
 
-        //return result;
-        //}
+            return result;
+        }
 
-        //private string DomandaValoreGetTotaleElementiVista()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        private string DomandaValoreGetTotaleElementiVista()
+        {
+            return _businessDomandaValore.DomandaValoreGetTotaleElementiVista();
+        }
 
 
         // Pratica Gruppo
@@ -268,18 +275,43 @@ namespace ArcoApi.Controllers
         }
 
 
-        //// Sede
-        //[HttpPost]
-        //[Route("sede")]
-        //public RisultatoElementiPagina<Sede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        // Sede
+        [HttpPost]
+        [Route("sede")]
+        public RisultatoElementiPagina<Sede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
+        {
+            var result = new RisultatoElementiPagina<Sede>();
 
-        //private string SedeGetTotaleElementiVista()
-        //{
-        //    throw new NotImplementedException();
-        //}
+            try
+            {
+                result.ElementiPagina = _businessSede.SedeGetElementiPagina(numeroElementi, indicePagina);
+            }
+            catch (ArgumentException argEx)
+            {
+                Response.StatusCode = 400;
+                result.RisultatoRichiesta.CodiceMessaggio = 501;
+                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+            }
+            catch (SqlException sqlEx)
+            {
+                Response.StatusCode = 500;
+                result.RisultatoRichiesta.CodiceMessaggio = 502;
+                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+            }
+            catch (Exception ex)
+            {
+                Response.StatusCode = 500;
+                result.RisultatoRichiesta.CodiceMessaggio = 500;
+                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+            }
+
+            return result;
+        }
+
+        private string SedeGetTotaleElementiVista()
+        {
+            return _businessSede.SedeGetTotaleElementiVista();
+        }
 
 
         // Gestore delle chiamate per il numero degli elementi in una vista
@@ -297,9 +329,9 @@ namespace ArcoApi.Controllers
                 case "ViewQlikAuditOperativoAccesso":
                     result.TotaleElementiVista = AuditOperativoAccessoGetTotaleElementiVista();
                     break;
-                //case "ViewQlikDomandaValore":
-                //    result.TotaleElementiVista = DomandaValoreGetTotaleElementiVista();
-                //    break;
+                case "ViewQlikDomandaValore":
+                    result.TotaleElementiVista = DomandaValoreGetTotaleElementiVista();
+                    break;
                 case "ViewQlikPraticaGruppo":
                     result.TotaleElementiVista = PraticaGruppoGetTotaleElementiVista();
                     break;
@@ -309,9 +341,9 @@ namespace ArcoApi.Controllers
                 case "ViewQlikTeam":
                     result.TotaleElementiVista = TeamGetTotaleElementiVista();
                     break;
-                //case "ViewQlikSede":
-                //     result.TotaleElementiVista = SedeGetTotaleElementiVista();
-                //     break;
+                case "ViewQlikSede":
+                    result.TotaleElementiVista = SedeGetTotaleElementiVista();
+                    break;
                 default:
                     result.RisultatoRichiesta.Messaggio = $"{vista} non corrisponde ad alcuna vista presente nel DB.";
                     result.RisultatoRichiesta.CodiceMessaggio = 501;
