@@ -53,7 +53,7 @@ namespace ArcoApi.Business
         {
             using (var db = new QlikDbContext())
             {
-                int count = db.ViewQlikDatiPraticaAudit.Count();
+                int count = db.ViewQlikAuditOperativoAccesso.Count();
                 return count.ToString();
             }
         }
