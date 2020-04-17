@@ -39,12 +39,12 @@ namespace ArcoApi
             services.AddSingleton<IBusinessDomandaValore, BusinessDomandaValore>();
             services.AddSingleton<IBusinessSede, BusinessSede>();
 
-            services.AddSingleton<IQlikBusiness, QlikBusiness>();
+            services.AddScoped<IQlikBusiness, QlikBusiness>();
 
             services.AddControllers();
 
-            services.AddDbContext<QlikDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("ViewQlikDatabase")));
+            string connectionString = Configuration.GetConnectionString("ViewQlikDatabase");
+            services.AddDbContext<QlikDbContext>(options => options.UseSqlServer(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

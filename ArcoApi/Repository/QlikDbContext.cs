@@ -34,36 +34,43 @@ namespace ArcoApi.Repository
             modelBuilder.Entity<ViewQlikAuditOperativoAccesso>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikAuditOperativoAccesso");
             });
 
             modelBuilder.Entity<ViewQlikDatiPraticaAudit>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikDatiPraticaAudit");
             });
 
             modelBuilder.Entity<ViewQlikPraticaGruppo>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikPraticaGruppo");
             });
 
             modelBuilder.Entity<ViewQlikRilievo>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikRilievo");
             });
 
             modelBuilder.Entity<ViewQlikTeam>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikTeam");
             });
 
             modelBuilder.Entity<ViewQlikSede>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikSede");
             });
 
             modelBuilder.Entity<ViewQlikDomandaValore>(entity =>
             {
                 entity.HasNoKey();
+                //entity.ToView("ViewQlikDomandaValore");
             });
 
             OnModelCreatingPartial(modelBuilder);
