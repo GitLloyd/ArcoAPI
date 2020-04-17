@@ -12,6 +12,13 @@ namespace ArcoApi.Business.QlikBusiness
 {
     public class QlikBusiness : IQlikBusiness
     {
+        private readonly QlikDbContext _qlikDbContext;
+
+        public QlikBusiness(QlikDbContext qlikDbContext)
+        {
+            _qlikDbContext = qlikDbContext;
+        }
+
         #region Team
         public IList<ViewQlikTeam> TeamGetElementiPagina(int numeroElementi, int indicePagina)
         {
@@ -30,17 +37,14 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikTeam> result = db.ViewQlikTeam
-                                           .OrderByDescending(dati => dati.IdAuditOperativo)
-                                           .Skip(elementiDaSaltare)
-                                           .Take(numeroElementi)
-                                           .ToList();
-                    return result;
-                }
+                IList<ViewQlikTeam> result = _qlikDbContext.ViewQlikTeam
+                                       .OrderByDescending(dati => dati.IdAuditOperativo)
+                                       .Skip(elementiDaSaltare)
+                                       .Take(numeroElementi)
+                                       .ToList();
+                return result;
             }
             catch (SqlException)
             {
@@ -54,11 +58,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string TeamGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikDatiPraticaAudit.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikDatiPraticaAudit.Count();
+            return count.ToString();
         }
         #endregion
 
@@ -80,17 +81,15 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikRilievo> result = db.ViewQlikRilievo
-                                              .OrderByDescending(dati => dati.IdAuditOperativo)
-                                              .Skip(elementiDaSaltare)
-                                              .Take(numeroElementi)
-                                              .ToList();
-                    return result;
-                }
+                IList<ViewQlikRilievo> result = _qlikDbContext.ViewQlikRilievo
+                                          .OrderByDescending(dati => dati.IdAuditOperativo)
+                                          .Skip(elementiDaSaltare)
+                                          .Take(numeroElementi)
+                                          .ToList();
+                return result;
+
             }
             catch (SqlException)
             {
@@ -104,11 +103,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string RilievoGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikRilievo.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikRilievo.Count();
+            return count.ToString();
         }
         #endregion
 
@@ -130,17 +126,14 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikSede> result = db.ViewQlikSede
-                                           .OrderByDescending(dati => dati.CodiceSede)
-                                           .Skip(elementiDaSaltare)
-                                           .Take(numeroElementi)
-                                           .ToList();
-                    return result;
-                }
+                IList<ViewQlikSede> result = _qlikDbContext.ViewQlikSede
+                                       .OrderByDescending(dati => dati.CodiceSede)
+                                       .Skip(elementiDaSaltare)
+                                       .Take(numeroElementi)
+                                       .ToList();
+                return result;
             }
             catch (SqlException)
             {
@@ -154,11 +147,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string SedeGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikSede.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikSede.Count();
+            return count.ToString();
         }
         #endregion
 
@@ -180,17 +170,14 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikPraticaGruppo> result = db.ViewQlikPraticaGruppo
-                                                    .OrderByDescending(dati => dati.IdAuditOperativo)
-                                                    .Skip(elementiDaSaltare)
-                                                    .Take(numeroElementi)
-                                                    .ToList();
-                    return result;
-                }
+                IList<ViewQlikPraticaGruppo> result = _qlikDbContext.ViewQlikPraticaGruppo
+                                                .OrderByDescending(dati => dati.IdAuditOperativo)
+                                                .Skip(elementiDaSaltare)
+                                                .Take(numeroElementi)
+                                                .ToList();
+                return result;
             }
             catch (SqlException)
             {
@@ -204,11 +191,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string PraticaGruppoAuditGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikPraticaGruppo.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikPraticaGruppo.Count();
+            return count.ToString();
         }
         #endregion
 
@@ -230,17 +214,14 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikDomandaValore> result = db.ViewQlikDomandaValore
-                                                    .OrderByDescending(dati => dati.IdAuditOperativo)
-                                                    .Skip(elementiDaSaltare)
-                                                    .Take(numeroElementi)
-                                                    .ToList();
-                    return result;
-                }
+                IList<ViewQlikDomandaValore> result = _qlikDbContext.ViewQlikDomandaValore
+                                                .OrderByDescending(dati => dati.IdAuditOperativo)
+                                                .Skip(elementiDaSaltare)
+                                                .Take(numeroElementi)
+                                                .ToList();
+                return result;
             }
             catch (SqlException)
             {
@@ -254,11 +235,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string DomandaValoreGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikDomandaValore.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikDomandaValore.Count();
+            return count.ToString();
         }
 
         #endregion
@@ -281,17 +259,15 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikDatiPraticaAudit> result = db.ViewQlikDatiPraticaAudit
-                                                       .OrderByDescending(dati => dati.IdAuditOperativo)
-                                                       .Skip(elementiDaSaltare)
-                                                       .Take(numeroElementi)
-                                                       .ToList();
-                    return result;
-                }
+                IList<ViewQlikDatiPraticaAudit> result = _qlikDbContext.ViewQlikDatiPraticaAudit
+                                                   .OrderByDescending(dati => dati.IdAuditOperativo)
+                                                   .Skip(elementiDaSaltare)
+                                                   .Take(numeroElementi)
+                                                   .ToList();
+                return result;
+
             }
             catch (SqlException)
             {
@@ -305,11 +281,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string DatiPraticaAuditGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikDatiPraticaAudit.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikDatiPraticaAudit.Count();
+            return count.ToString();
         }
         #endregion
 
@@ -330,17 +303,14 @@ namespace ArcoApi.Business.QlikBusiness
                     throw new ArgumentException("L'indice della pagina richiesta non può superare il numero di pagine esistenti.");
                 }
 
-                using (var db = new QlikDbContext())
-                {
-                    int elementiDaSaltare = numeroElementi * (indicePagina - 1);
+                int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<ViewQlikAuditOperativoAccesso> result = db.ViewQlikAuditOperativoAccesso
-                                                            .OrderByDescending(dati => dati.IdAuditOperativo)
-                                                            .Skip(elementiDaSaltare)
-                                                            .Take(numeroElementi)
-                                                            .ToList();
-                    return result;
-                }
+                IList<ViewQlikAuditOperativoAccesso> result = _qlikDbContext.ViewQlikAuditOperativoAccesso
+                                                        .OrderByDescending(dati => dati.IdAuditOperativo)
+                                                        .Skip(elementiDaSaltare)
+                                                        .Take(numeroElementi)
+                                                        .ToList();
+                return result;
             }
             catch (SqlException)
             {
@@ -354,11 +324,8 @@ namespace ArcoApi.Business.QlikBusiness
 
         public string AuditOperativoAccessoAuditGetTotaleElementiVista()
         {
-            using (var db = new QlikDbContext())
-            {
-                int count = db.ViewQlikAuditOperativoAccesso.Count();
-                return count.ToString();
-            }
+            int count = _qlikDbContext.ViewQlikAuditOperativoAccesso.Count();
+            return count.ToString();
         }
         #endregion
     }

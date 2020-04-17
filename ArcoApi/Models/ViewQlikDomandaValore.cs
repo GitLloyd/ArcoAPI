@@ -8,14 +8,14 @@ namespace ArcoApi.Models
         public double? IdDomandaValore { get; set; }
         public string Acronimo { get; set; }
         public string Testo { get; set; }
-        public double? IdGruppo { get; set; }
+        public int? IdGruppo { get; set; }
         public string Gravita { get; set; }
         public string Risposta { get; set; }
         public string Commento { get; set; }
         public string ProposteDiMiglioramento { get; set; }
         public string NonConformita { get; set; }
-        public double? IdAuditOperativo { get; set; }
-        public double? IdPratica { get; set; }
-        public double? IdDomanda { get; set; }
+        public int? IdAuditOperativo { get; set; }
+        public int? IdPratica { get; set; }
+        public int? IdDomanda { get; set; }
     }
 }
