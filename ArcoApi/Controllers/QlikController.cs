@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using ArcoApi.Models;
 using Microsoft.Data.SqlClient;
 using ArcoApi.Models.JSON;
+using ArcoApi.Interfaces.QlikBusiness;
 
 namespace ArcoApi.Controllers
 {
@@ -299,7 +300,7 @@ namespace ArcoApi.Controllers
         // Gestore delle chiamate per il numero degli elementi in una vista
         [HttpPost]
         [Route("totaleelementivista")]
-        public RisultatoTotaleElementiVista GetTotaleElementiVista([FromHeader] string vista)
+        public RisultatoTotaleElementiVista GetTotaleElementiVista(string vista)
         {
             var result = new RisultatoTotaleElementiVista();
 

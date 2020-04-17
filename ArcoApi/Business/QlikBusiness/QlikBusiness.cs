@@ -1,4 +1,5 @@
 ﻿using ArcoApi.Interfaces;
+using ArcoApi.Interfaces.QlikBusiness;
 using ArcoApi.Models;
 using ArcoApi.Repository;
 using Microsoft.Data.SqlClient;
@@ -7,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArcoApi.Business
+namespace ArcoApi.Business.QlikBusiness
 {
     public class QlikBusiness : IQlikBusiness
     {

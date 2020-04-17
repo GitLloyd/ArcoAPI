@@ -26,10 +26,7 @@ namespace ArcoApi.Repository
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-3S9IUEO\\DB_LOCALE;Initial Catalog=TeenageWasteland;Integrated Security=True");
-            }
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

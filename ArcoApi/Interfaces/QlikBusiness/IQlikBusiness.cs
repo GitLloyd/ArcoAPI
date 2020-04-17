@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArcoApi.Interfaces
+namespace ArcoApi.Interfaces.QlikBusiness
 {
     public interface IQlikBusiness
     {
