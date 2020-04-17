@@ -21,6 +21,8 @@ namespace ArcoApi.Repository
         public virtual DbSet<PraticaGruppo> ViewQlikPraticaGruppo { get; set; }
         public virtual DbSet<Rilievo> ViewQlikRilievo { get; set; }
         public virtual DbSet<Team> ViewQlikTeam { get; set; }
+        public virtual DbSet<Sede> ViewQlikSede { get; set; }
+        public virtual DbSet<DomandaValore> ViewQlikDomandaValore { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,6 +55,16 @@ namespace ArcoApi.Repository
             });
 
             modelBuilder.Entity<Team>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            modelBuilder.Entity<Sede>(entity =>
+            {
+                entity.HasNoKey();
+            });
+
+            modelBuilder.Entity<DomandaValore>(entity =>
             {
                 entity.HasNoKey();
             });
