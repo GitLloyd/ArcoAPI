@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArcoApi.Models
+namespace ArcoApi.Models.JSON
 {
     public class RisultatoRichiesta
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcoApi.Models
 {
-    public partial class AuditOperativoAccesso
+    public partial class ViewQlikAuditOperativoAccesso
     {
         public double? IdAuditOperativo { get; set; }
         public string NomeCampione { get; set; }

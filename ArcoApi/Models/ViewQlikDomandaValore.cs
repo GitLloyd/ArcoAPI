@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcoApi.Models
 {
-    public partial class DomandaValore
+    public partial class ViewQlikDomandaValore
     {
         public double? IdDomandaValore { get; set; }
         public string Acronimo { get; set; }

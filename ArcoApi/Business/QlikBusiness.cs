@@ -12,7 +12,7 @@ namespace ArcoApi.Business
     public class QlikBusiness : IQlikBusiness
     {
         #region Team
-        public IList<Team> TeamGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikTeam> TeamGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -33,7 +33,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<Team> result = db.ViewQlikTeam
+                    IList<ViewQlikTeam> result = db.ViewQlikTeam
                                            .OrderByDescending(dati => dati.IdAuditOperativo)
                                            .Skip(elementiDaSaltare)
                                            .Take(numeroElementi)
@@ -62,7 +62,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region Rilievo
-        public IList<Rilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikRilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<Rilievo> result = db.ViewQlikRilievo
+                    IList<ViewQlikRilievo> result = db.ViewQlikRilievo
                                               .OrderByDescending(dati => dati.IdAuditOperativo)
                                               .Skip(elementiDaSaltare)
                                               .Take(numeroElementi)
@@ -112,7 +112,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region Sede
-        public IList<Sede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikSede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<Sede> result = db.ViewQlikSede
+                    IList<ViewQlikSede> result = db.ViewQlikSede
                                            .OrderByDescending(dati => dati.CodiceSede)
                                            .Skip(elementiDaSaltare)
                                            .Take(numeroElementi)
@@ -162,7 +162,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region PraticaGruppo
-        public IList<PraticaGruppo> PraticaGruppoAuditGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikPraticaGruppo> PraticaGruppoAuditGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -183,7 +183,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<PraticaGruppo> result = db.ViewQlikPraticaGruppo
+                    IList<ViewQlikPraticaGruppo> result = db.ViewQlikPraticaGruppo
                                                     .OrderByDescending(dati => dati.IdAuditOperativo)
                                                     .Skip(elementiDaSaltare)
                                                     .Take(numeroElementi)
@@ -212,7 +212,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region DomandaValore
-        public IList<DomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikDomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -233,7 +233,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<DomandaValore> result = db.ViewQlikDomandaValore
+                    IList<ViewQlikDomandaValore> result = db.ViewQlikDomandaValore
                                                     .OrderByDescending(dati => dati.IdAuditOperativo)
                                                     .Skip(elementiDaSaltare)
                                                     .Take(numeroElementi)
@@ -263,7 +263,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region DatiPraticaAudit
-        public IList<DatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikDatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -284,7 +284,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<DatiPraticaAudit> result = db.ViewQlikDatiPraticaAudit
+                    IList<ViewQlikDatiPraticaAudit> result = db.ViewQlikDatiPraticaAudit
                                                        .OrderByDescending(dati => dati.IdAuditOperativo)
                                                        .Skip(elementiDaSaltare)
                                                        .Take(numeroElementi)
@@ -313,7 +313,7 @@ namespace ArcoApi.Business
         #endregion
 
         #region AuditOperativoAccesso
-        public IList<AuditOperativoAccesso> AuditOperativoAccessoAuditGetElementiPagina(int numeroElementi, int indicePagina)
+        public IList<ViewQlikAuditOperativoAccesso> AuditOperativoAccessoAuditGetElementiPagina(int numeroElementi, int indicePagina)
         {
             try
             {
@@ -333,7 +333,7 @@ namespace ArcoApi.Business
                 {
                     int elementiDaSaltare = numeroElementi * (indicePagina - 1);
 
-                    IList<AuditOperativoAccesso> result = db.ViewQlikAuditOperativoAccesso
+                    IList<ViewQlikAuditOperativoAccesso> result = db.ViewQlikAuditOperativoAccesso
                                                             .OrderByDescending(dati => dati.IdAuditOperativo)
                                                             .Skip(elementiDaSaltare)
                                                             .Take(numeroElementi)

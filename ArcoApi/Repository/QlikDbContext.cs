@@ -16,13 +16,13 @@ namespace ArcoApi.Repository
         {
         }
 
-        public virtual DbSet<AuditOperativoAccesso> ViewQlikAuditOperativoAccesso { get; set; }
-        public virtual DbSet<DatiPraticaAudit> ViewQlikDatiPraticaAudit { get; set; }
-        public virtual DbSet<PraticaGruppo> ViewQlikPraticaGruppo { get; set; }
-        public virtual DbSet<Rilievo> ViewQlikRilievo { get; set; }
-        public virtual DbSet<Team> ViewQlikTeam { get; set; }
-        public virtual DbSet<Sede> ViewQlikSede { get; set; }
-        public virtual DbSet<DomandaValore> ViewQlikDomandaValore { get; set; }
+        public virtual DbSet<ViewQlikAuditOperativoAccesso> ViewQlikAuditOperativoAccesso { get; set; }
+        public virtual DbSet<ViewQlikDatiPraticaAudit> ViewQlikDatiPraticaAudit { get; set; }
+        public virtual DbSet<ViewQlikPraticaGruppo> ViewQlikPraticaGruppo { get; set; }
+        public virtual DbSet<ViewQlikRilievo> ViewQlikRilievo { get; set; }
+        public virtual DbSet<ViewQlikTeam> ViewQlikTeam { get; set; }
+        public virtual DbSet<ViewQlikSede> ViewQlikSede { get; set; }
+        public virtual DbSet<ViewQlikDomandaValore> ViewQlikDomandaValore { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -34,37 +34,37 @@ namespace ArcoApi.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuditOperativoAccesso>(entity =>
+            modelBuilder.Entity<ViewQlikAuditOperativoAccesso>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<DatiPraticaAudit>(entity =>
+            modelBuilder.Entity<ViewQlikDatiPraticaAudit>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<PraticaGruppo>(entity =>
+            modelBuilder.Entity<ViewQlikPraticaGruppo>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<Rilievo>(entity =>
+            modelBuilder.Entity<ViewQlikRilievo>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<Team>(entity =>
+            modelBuilder.Entity<ViewQlikTeam>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<Sede>(entity =>
+            modelBuilder.Entity<ViewQlikSede>(entity =>
             {
                 entity.HasNoKey();
             });
 
-            modelBuilder.Entity<DomandaValore>(entity =>
+            modelBuilder.Entity<ViewQlikDomandaValore>(entity =>
             {
                 entity.HasNoKey();
             });

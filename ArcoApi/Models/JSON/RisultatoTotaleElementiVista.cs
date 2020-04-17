@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ArcoApi.Models
+namespace ArcoApi.Models.JSON
 {
-    public class RisultatoElementiPagina<T>
+    public class RisultatoTotaleElementiVista
     {
         public RisultatoRichiesta RisultatoRichiesta { get; set; }
 
-        public IList<T> ElementiPagina { get; set; } = new List<T>();
+        public string TotaleElementiVista { get; set; } = "0";
     }
 }

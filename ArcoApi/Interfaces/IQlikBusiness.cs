@@ -8,37 +8,37 @@ namespace ArcoApi.Interfaces
 {
     public interface IQlikBusiness
     {
-        public IList<Sede> SedeGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikSede> SedeGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string SedeGetTotaleElementiVista();
 
 
-        public IList<Team> TeamGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikTeam> TeamGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string TeamGetTotaleElementiVista();
 
 
-        public IList<PraticaGruppo> PraticaGruppoAuditGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikPraticaGruppo> PraticaGruppoAuditGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string PraticaGruppoAuditGetTotaleElementiVista();
 
 
-        public IList<DomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikDomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string DomandaValoreGetTotaleElementiVista();
 
 
-        public IList<Rilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikRilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string RilievoGetTotaleElementiVista();
 
 
-        public IList<DatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikDatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string DatiPraticaAuditGetTotaleElementiVista();
 
 
-        public IList<AuditOperativoAccesso> AuditOperativoAccessoAuditGetElementiPagina(int numeroElementi, int indicePagina);
+        public IList<ViewQlikAuditOperativoAccesso> AuditOperativoAccessoAuditGetElementiPagina(int numeroElementi, int indicePagina);
 
         public string AuditOperativoAccessoAuditGetTotaleElementiVista();
     }

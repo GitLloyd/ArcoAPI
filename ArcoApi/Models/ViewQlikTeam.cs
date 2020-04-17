@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcoApi.Models
 {
-    public partial class Team
+    public partial class ViewQlikTeam
     {
         public string NomeUtente { get; set; }
         public string NomeProfilo { get; set; }

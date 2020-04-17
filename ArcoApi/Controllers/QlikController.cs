@@ -7,6 +7,7 @@ using ArcoApi.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using ArcoApi.Models;
 using Microsoft.Data.SqlClient;
+using ArcoApi.Models.JSON;
 
 namespace ArcoApi.Controllers
 {
@@ -26,9 +27,9 @@ namespace ArcoApi.Controllers
         // Dati Pratica Audit
         [HttpPost]
         [Route("datipraticaaudit")]
-        public RisultatoElementiPagina<DatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikDatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<DatiPraticaAudit>();
+            var result = new RisultatoElementiPagina<ViewQlikDatiPraticaAudit>();
 
             try
             {
@@ -65,9 +66,9 @@ namespace ArcoApi.Controllers
         // Team
         [HttpPost]
         [Route("team")]
-        public RisultatoElementiPagina<Team> TeamGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikTeam> TeamGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<Team>();
+            var result = new RisultatoElementiPagina<ViewQlikTeam>();
 
             try
             {
@@ -104,9 +105,9 @@ namespace ArcoApi.Controllers
         // Audit Operativo Accesso
         [HttpPost]
         [Route("auditoperativoaccesso")]
-        public RisultatoElementiPagina<AuditOperativoAccesso> AuditOperativoAccessoGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikAuditOperativoAccesso> AuditOperativoAccessoGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<AuditOperativoAccesso>();
+            var result = new RisultatoElementiPagina<ViewQlikAuditOperativoAccesso>();
 
             try
             {
@@ -143,9 +144,9 @@ namespace ArcoApi.Controllers
         // Domanda Valore
         [HttpPost]
         [Route("domandavalore")]
-        public RisultatoElementiPagina<DomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikDomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<DomandaValore>();
+            var result = new RisultatoElementiPagina<ViewQlikDomandaValore>();
             try
             {
                 result.ElementiPagina = _qlikBusiness.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
@@ -181,9 +182,9 @@ namespace ArcoApi.Controllers
         // Pratica Gruppo
         [HttpPost]
         [Route("praticagruppo")]
-        public RisultatoElementiPagina<PraticaGruppo> PraticaGruppoGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikPraticaGruppo> PraticaGruppoGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<PraticaGruppo>();
+            var result = new RisultatoElementiPagina<ViewQlikPraticaGruppo>();
 
             try
             {
@@ -220,9 +221,9 @@ namespace ArcoApi.Controllers
         // Rilievo
         [HttpPost]
         [Route("rilievo")]
-        public RisultatoElementiPagina<Rilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikRilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<Rilievo>();
+            var result = new RisultatoElementiPagina<ViewQlikRilievo>();
 
             try
             {
@@ -259,9 +260,9 @@ namespace ArcoApi.Controllers
         // Sede
         [HttpPost]
         [Route("sede")]
-        public RisultatoElementiPagina<Sede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
+        public RisultatoElementiPagina<ViewQlikSede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
         {
-            var result = new RisultatoElementiPagina<Sede>();
+            var result = new RisultatoElementiPagina<ViewQlikSede>();
 
             try
             {

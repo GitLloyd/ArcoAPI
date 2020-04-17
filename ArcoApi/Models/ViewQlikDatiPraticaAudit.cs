@@ -3,8 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcoApi.Models
 {
-    public partial class DatiPraticaAudit
-
+    public partial class ViewQlikDatiPraticaAudit
     {
         public double? Progressivo { get; set; }
         public double? IdPratica { get; set; }

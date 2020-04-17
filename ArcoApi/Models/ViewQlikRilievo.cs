@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArcoApi.Models
 {
-    public partial class Rilievo
+    public partial class ViewQlikRilievo
     {
         public double? IdIstanzaRilievo { get; set; }
         public double? IdRilievo { get; set; }
