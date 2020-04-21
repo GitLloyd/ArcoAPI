@@ -29,6 +29,7 @@
           "Microsoft.EntityFrameworkCore.Design": "3.1.3",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.3",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.3",
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.5.0",
           "Microsoft.IdentityModel.Tokens": "6.5.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.1",
           "System.IdentityModel.Tokens.Jwt": "6.5.0",
@@ -357,7 +358,7 @@
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.3": {
         "dependencies": {
-          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.5.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
@@ -975,31 +976,30 @@
           "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Protocols/5.5.0": {
+      "Microsoft.IdentityModel.Protocols/6.5.0": {
         "dependencies": {
           "Microsoft.IdentityModel.Logging": "6.5.0",
           "Microsoft.IdentityModel.Tokens": "6.5.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {
-            "assemblyVersion": "5.5.0.0",
-            "fileVersion": "5.5.0.60624"
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.10323"
           }
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll": {}
         }
       },
-      "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect/6.5.0": {
         "dependencies": {
-          "Microsoft.IdentityModel.Protocols": "5.5.0",
-          "Newtonsoft.Json": "11.0.2",
+          "Microsoft.IdentityModel.Protocols": "6.5.0",
           "System.IdentityModel.Tokens.Jwt": "6.5.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
-            "assemblyVersion": "5.5.0.0",
-            "fileVersion": "5.5.0.60624"
+            "assemblyVersion": "6.5.0.0",
+            "fileVersion": "6.5.0.10323"
           }
         },
         "compile": {
@@ -4154,19 +4154,19 @@
       "path": "microsoft.identitymodel.logging/6.5.0",
       "hashPath": "microsoft.identitymodel.logging.6.5.0.nupkg.sha512"
     },
-    "Microsoft.IdentityModel.Protocols/5.5.0": {
+    "Microsoft.IdentityModel.Protocols/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-m1gwAQwZjUxzRBC+4H40vYSo9Cms9yUbMdW492rQoXHU77G/ItiKxpk2+W9bWYcdsKUDKudye7im3T3MlVxEkg==",
-      "path": "microsoft.identitymodel.protocols/5.5.0",
-      "hashPath": "microsoft.identitymodel.protocols.5.5.0.nupkg.sha512"
+      "sha512": "sha512-IjACAiLR14SqUfGTQldfVjK/f97Z7hlfWWvA3qlIJ+S39ouE+GLLeuuRjKnZkB1eRrMy6bPoNinIIdzan9M5Sw==",
+      "path": "microsoft.identitymodel.protocols/6.5.0",
+      "hashPath": "microsoft.identitymodel.protocols.6.5.0.nupkg.sha512"
     },
-    "Microsoft.IdentityModel.Protocols.OpenIdConnect/5.5.0": {
+    "Microsoft.IdentityModel.Protocols.OpenIdConnect/6.5.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-21F4QlbaD5CXNs2urNRCO6vljbbrhv3gmGT8P18SKGKZ9IYBCn29extoJriHiPfhABd5b8S7RcdKU50XhERkYg==",
-      "path": "microsoft.identitymodel.protocols.openidconnect/5.5.0",
-      "hashPath": "microsoft.identitymodel.protocols.openidconnect.5.5.0.nupkg.sha512"
+      "sha512": "sha512-DBpCXBKlhKDH9lTc/So5wbbJqGfRnGcIK3cVB9TbgVluWP58DG1ivPwwiKEgxCZkXNR3luUGnuVbqSblBPI6Tw==",
+      "path": "microsoft.identitymodel.protocols.openidconnect/6.5.0",
+      "hashPath": "microsoft.identitymodel.protocols.openidconnect.6.5.0.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Tokens/6.5.0": {
       "type": "package",

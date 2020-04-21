@@ -7,7 +7,11 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.IdentityModel.Tokens.Jwt;
 using System;
+using System.Linq;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Threading;
+using Microsoft.IdentityModel.Protocols;
 
 namespace AuthTest.API.Middleware
 {
@@ -22,12 +26,15 @@ namespace AuthTest.API.Middleware
 
         public async Task InvokeAsync(HttpContext context, IConfiguration config)
         {
-            string secret   = config.GetSection("JwtConfig").GetSection("Secret").Value;
-            string expDate  = config.GetSection("JwtConfig").GetSection("ExpirationTime").Value;
-            string issuer   = config.GetSection("JwtConfig").GetSection("Issuer").Value;
-            string audience = config.GetSection("JwtConfig").GetSection("Audience").Value;
+            IConfigurationSection jwtConfig = config.GetSection("JwtConfig");
+            string expDate  = jwtConfig.GetSection("ExpirationTime").Value;
+            string issuer   = jwtConfig.GetSection("Issuer").Value;
+            string audience = jwtConfig.GetSection("Audience").Value;
 
-            string token = $"Bearer {GenerateSecurityToken(secret, expDate, issuer, audience)}";
+            string wellKnownEndpoint = config.GetSection("WellKnownEndpoint").Value;
+
+            string token = await GenerateSecurityToken(expDate, issuer, audience, wellKnownEndpoint);
+            token = "Bearer " + token;
 
             context.Request.Headers.Remove("Authorization");
             context.Request.Headers.Add("Authorization", token);
@@ -38,10 +45,11 @@ namespace AuthTest.API.Middleware
             await _next(context);
         }
 
-        private string GenerateSecurityToken(string _secret, string _expDate, string _issuer, string _audience)
-        {
-            byte[] secret = Encoding.ASCII.GetBytes(_secret);
-            var key = new SymmetricSecurityKey(secret);
+        private async Task<string> GenerateSecurityToken(string _expDate, string _issuer, string _audience, string _wellKnownEndpoint)
+        {            
+            var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(_wellKnownEndpoint, new OpenIdConnectConfigurationRetriever());
+            OpenIdConnectConfiguration openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
+            SecurityKey securityKey = openIdConfig.SigningKeys.Last();
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
@@ -49,7 +57,7 @@ namespace AuthTest.API.Middleware
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 Audience = _audience,
                 Issuer = _issuer,
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.RsaSha256)
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
