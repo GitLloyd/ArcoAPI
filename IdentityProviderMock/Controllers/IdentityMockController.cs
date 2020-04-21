@@ -20,25 +20,27 @@ namespace IdentityProviderMock.Controllers
     {
         [Route(".well-known/inail-configuration")]
         [Produces("application/json")]
-        public async Task<OpenIdConnectConfiguration> WellKnownEndpoint()
+        public async Task<OpenIdConfigMock> WellKnownEndpoint()
         {
             using var reader = new StreamReader("Mocks\\inail_openid_config.json");
             string fileContent = await reader.ReadToEndAsync();
-            var openIdConfig = OpenIdConnectConfiguration.Create(fileContent);
-            //OpenIdConnectConfiguration openIdConfig = JsonConvert.DeserializeObject<OpenIdConnectConfiguration>(fileContent);
+            OpenIdConfigMock openIdConfig = JsonConvert.DeserializeObject<OpenIdConfigMock>(fileContent);
 
             return openIdConfig;
         }
 
         [Route("jwks")]
         [Produces("application/json")]
-        public async Task<ICollection<JsonWebKey>> JwksURI()
+        public async Task<JsonWebKeySet> JwksURI()
         {
             using var reader = new StreamReader("Mocks\\jwks.json");
             string fileContent = await reader.ReadToEndAsync();
-            Jwks jwks = JsonConvert.DeserializeObject<Jwks>(fileContent);
+            JsonWebKeySet set = new JsonWebKeySet(fileContent);
+            return set;
 
-            return jwks.Keys;
+            //Jwks jwks = JsonConvert.DeserializeObject<Jwks>(fileContent);
+            //ICollection<JsonWebKey> keys = jwks.Keys;
+            //return jwks.Keys;
         }
     }
 }
