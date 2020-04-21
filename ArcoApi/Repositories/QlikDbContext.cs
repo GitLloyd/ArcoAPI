@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using ArcoApi.Models;
 
-namespace ArcoApi.Repository
+namespace ArcoApi.Repositories
 {
     public partial class QlikDbContext : DbContext
     {

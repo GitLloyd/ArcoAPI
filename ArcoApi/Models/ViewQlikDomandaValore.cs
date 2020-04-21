@@ -5,7 +5,7 @@ namespace ArcoApi.Models
 {
     public partial class ViewQlikDomandaValore
     {
-        public double? IdDomandaValore { get; set; }
+        public int? IdDomandaValore { get; set; }
         public string Acronimo { get; set; }
         public string Testo { get; set; }
         public int? IdGruppo { get; set; }

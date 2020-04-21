@@ -1,7 +1,7 @@
 ﻿using ArcoApi.Interfaces;
 using ArcoApi.Interfaces.QlikBusiness;
 using ArcoApi.Models;
-using ArcoApi.Repository;
+using ArcoApi.Repositories;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;

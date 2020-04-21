@@ -9,9 +9,11 @@ using ArcoApi.Models;
 using Microsoft.Data.SqlClient;
 using ArcoApi.Models.JSON;
 using ArcoApi.Interfaces.QlikBusiness;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ArcoApi.Controllers
 {
+    [Authorize]
     [Route("viewqlikapi")]
     [ApiController]
     public class QlikController : ControllerBase, IQlikController
