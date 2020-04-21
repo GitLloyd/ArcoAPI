@@ -1,5 +1,5 @@
 {
-  "issuer": "https://collportale.inail.it",
+  "issuer": "https://www.inail.it",
   "authorization_endpoint": "https://fws.test.inail.it/affwebservices/CASSO/oidc/authorize",
   "token_endpoint": "https://fws.test.inail.it/affwebservices/CASSO/oidc/token",
   "userinfo_endpoint": "https://fws.test.inail.it/affwebservices/CASSO/oidc/userinfo",

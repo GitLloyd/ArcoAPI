@@ -90,7 +90,6 @@ F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\obj\Debug\netcoreapp3.1\IdentityProviderMock.csproj.CopyComplete
-F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\Mocks\inail_opeind_config.json
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\Mocks\jwks.json
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
@@ -100,3 +99,4 @@ F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\obj\Debug\netcoreapp3.1\IdentityProviderMock.csproj.CoreCompileInputs.cache
 F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\obj\Debug\netcoreapp3.1\IdentityProviderMock.MvcApplicationPartsAssemblyInfo.cache
+F:\Visual Studio 2019\Progetti\ArcoApi\IdentityProviderMock\bin\Debug\netcoreapp3.1\Mocks\inail_openid_config.json

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using IdentityProviderMock.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IdentityProviderMock.Controllers
 {
@@ -19,21 +22,23 @@ namespace IdentityProviderMock.Controllers
         [Produces("application/json")]
         public async Task<OpenIdConnectConfiguration> WellKnownEndpoint()
         {
-            using var reader = new StreamReader("Mocks\\inail_opeind_config.json");
-            string line = await reader.ReadToEndAsync();
-            OpenIdConnectConfiguration openIdConfig = new OpenIdConnectConfiguration(line);
+            using var reader = new StreamReader("Mocks\\inail_openid_config.json");
+            string fileContent = await reader.ReadToEndAsync();
+            var openIdConfig = OpenIdConnectConfiguration.Create(fileContent);
+            //OpenIdConnectConfiguration openIdConfig = JsonConvert.DeserializeObject<OpenIdConnectConfiguration>(fileContent);
 
             return openIdConfig;
         }
 
         [Route("jwks")]
         [Produces("application/json")]
-        public async Task<string> JwksURI()
+        public async Task<ICollection<JsonWebKey>> JwksURI()
         {
             using var reader = new StreamReader("Mocks\\jwks.json");
-            string line = await reader.ReadToEndAsync();
+            string fileContent = await reader.ReadToEndAsync();
+            Jwks jwks = JsonConvert.DeserializeObject<Jwks>(fileContent);
 
-            return line;
+            return jwks.Keys;
         }
     }
 }
