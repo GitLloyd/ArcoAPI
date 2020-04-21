@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ArcoApi.Interfaces;
 using ArcoApi.Models;
-using ArcoApi.Repository;
+using ArcoApi.Repositories;
 using Microsoft.Data.SqlClient;
 
 namespace ArcoApi.Business
