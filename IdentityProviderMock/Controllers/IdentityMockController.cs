@@ -34,13 +34,10 @@ namespace IdentityProviderMock.Controllers
         public async Task<JsonWebKeySet> JwksURI()
         {
             using var reader = new StreamReader("Mocks\\jwks.json");
-            string fileContent = await reader.ReadToEndAsync();
-            JsonWebKeySet set = new JsonWebKeySet(fileContent);
-            return set;
+            string jwksJson = await reader.ReadToEndAsync();
+            JsonWebKeySet jwks = new JsonWebKeySet(jwksJson);
 
-            //Jwks jwks = JsonConvert.DeserializeObject<Jwks>(fileContent);
-            //ICollection<JsonWebKey> keys = jwks.Keys;
-            //return jwks.Keys;
+            return jwks;
         }
     }
 }
