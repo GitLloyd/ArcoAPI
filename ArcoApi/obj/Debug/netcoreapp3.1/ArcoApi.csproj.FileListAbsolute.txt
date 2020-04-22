@@ -133,3 +133,12 @@ F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.p
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.genruntimeconfig.cache
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Extensions.Logging.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.AspNetCore.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Extensions.Hosting.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Formatting.Compact.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Settings.Configuration.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll

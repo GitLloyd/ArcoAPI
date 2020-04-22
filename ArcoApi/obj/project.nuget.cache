@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "HTFJ/41MdamPSZ/MPbWv1KlFN3yjggOaN42Dut4icXQmyzAxZMEAFJVH/SEOa2cjJOfbU55vrLNSMRyipvdn4w==",
+  "dgSpecHash": "G+ZJviwGASWFzeGIv9g9o8LEleYyCUK0wXXBpUsuLBKZaH4lLyLPHf1ea1LVvR6Y3B1pUWeovE8xvLWTygnOjQ==",
   "success": true,
   "projectFilePath": "F:\\Visual Studio 2019\\Progetti\\ArcoApi\\ArcoApi\\ArcoApi.csproj",
   "expectedPackageFiles": [
@@ -96,9 +96,10 @@
     "C:\\Users\\valel\\.nuget\\packages\\serilog.extensions.logging\\3.0.1\\serilog.extensions.logging.3.0.1.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\serilog.formatting.compact\\1.0.0\\serilog.formatting.compact.1.0.0.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\serilog.settings.configuration\\3.1.0\\serilog.settings.configuration.3.1.0.nupkg.sha512",
+    "C:\\Users\\valel\\.nuget\\packages\\serilog.sinks.async\\1.4.0\\serilog.sinks.async.1.4.0.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\serilog.sinks.console\\3.1.1\\serilog.sinks.console.3.1.1.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\serilog.sinks.debug\\1.0.1\\serilog.sinks.debug.1.0.1.nupkg.sha512",
-    "C:\\Users\\valel\\.nuget\\packages\\serilog.sinks.file\\4.0.0\\serilog.sinks.file.4.0.0.nupkg.sha512",
+    "C:\\Users\\valel\\.nuget\\packages\\serilog.sinks.file\\4.1.0\\serilog.sinks.file.4.1.0.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\system.buffers\\4.3.0\\system.buffers.4.3.0.nupkg.sha512",
     "C:\\Users\\valel\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
