@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace ArcoApi
 {
@@ -13,19 +14,16 @@ namespace ArcoApi
     {
         public static void Main(string[] args)
         {
+            Log.Debug("Avvio applicazione...");
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) 
-        {
-            IHostBuilder host = Host.CreateDefaultBuilder(args);
-            host = host.ConfigureWebHostDefaults(webBuilder =>
-                        {
-                            webBuilder.UseStartup<Startup>();
-                        });
-
-            return host;
-        }
-            
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>()
+                          .UseSerilog((hostingContext, loggerConfiguration) => 
+                          loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration));
+            });            
     }
 }

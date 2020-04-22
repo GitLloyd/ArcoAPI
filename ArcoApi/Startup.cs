@@ -25,6 +25,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 namespace ArcoApi
 {
@@ -40,7 +41,7 @@ namespace ArcoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public async void ConfigureServices(IServiceCollection services)
         {
-
+            Log.Debug("Configurazione dei servizi:\nAggiunta delle dipendenze...");
             services.AddSingleton<IBusinessDatiPraticaAudit, BusinessDatiPraticaAudit>();
             services.AddSingleton<IBusinessAuditOperativoAccesso, BusinessAuditOperativoAccesso>();
             services.AddSingleton<IBusinessPraticaGruppo, BusinessPraticaGruppo>();
@@ -48,16 +49,19 @@ namespace ArcoApi
             services.AddSingleton<IBusinessTeam, BusinessTeam>();
             services.AddSingleton<IBusinessDomandaValore, BusinessDomandaValore>();
             services.AddSingleton<IBusinessSede, BusinessSede>();
-
             services.AddScoped<IQlikBusiness, QlikBusiness>();
 
+            Log.Debug("Dipendenze configurate.\nAggiunta dei controller...");
             services.AddControllers();
 
             // Database
+            Log.Debug("Controller creati.\nAggiunta del database...");
             string connectionString = Configuration.GetConnectionString("ViewQlikDatabase");
             services.AddDbContext<QlikDbContext>(options => options.UseSqlServer(connectionString));
 
+            Log.Debug("Database impostato.\nAggiunta dell'autenticazione tramite token...");
             await services.AddTokenAuthentication(Configuration);
+            Log.Debug("Autenticazione con token impostata.");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -12,6 +12,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Threading;
 using Microsoft.IdentityModel.Protocols;
+using Serilog;
 
 namespace AuthTest.API.Middleware
 {
@@ -46,22 +47,25 @@ namespace AuthTest.API.Middleware
         }
 
         private async Task<string> GenerateSecurityToken(string _expDate, string _issuer, string _audience, string _wellKnownEndpoint)
-        {            
+        {
+            Log.Warning("Generazione SecurityToken...\nRichiesta OIDC Configuration...");
             var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(_wellKnownEndpoint, new OpenIdConnectConfigurationRetriever());
             OpenIdConnectConfiguration openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
-            SecurityKey securityKey = openIdConfig.SigningKeys.Last();
+            Log.Debug("OIDC Configuration ottenuta.\nImpostazione del token...");
+            JsonWebKey key = openIdConfig.JsonWebKeySet.Keys.Last();
 
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = new ClaimsIdentity(),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 Audience = _audience,
-                Issuer = _issuer,
-                SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.RsaSha256Signature)
+                Issuer = _issuer, 
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature),
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            Log.Debug("Token generato.");
 
             return tokenHandler.WriteToken(token);
         }

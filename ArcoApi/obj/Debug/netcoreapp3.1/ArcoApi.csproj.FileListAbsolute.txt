@@ -142,3 +142,6 @@ F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.S
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.Console.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.Debug.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.File.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Sinks.Async.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.csproj.CoreCompileInputs.cache
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.MvcApplicationPartsAssemblyInfo.cache
