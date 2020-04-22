@@ -1,16 +1,12 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IdentityProviderMock.Models
 {
     public class OpenIdConfigMock
     {
         [JsonProperty("issuer")]
-        public string Issuer { get; set; }
+        public string issuer { get; set; }
 
         [JsonProperty("authorization_endpoint")]
         public string authorization_endpoint { get; set; }
@@ -67,15 +63,13 @@ namespace IdentityProviderMock.Models
         public string wellknowninail_endpoint { get; set; }
 
         [JsonProperty("Wellknownb2b_endpoint")]
-        public string Wellknownb2b_endpoint { get; set; }
-
-
+        public string wellknownb2b_endpoint { get; set; }
 
         [JsonProperty("webkit_endpoint")]
-        public string WebkitEndpoint { get; set; }
+        public string webkit_endpoint { get; set; }
 
         [JsonProperty("be_endpoint")]
-        public string BeEndpoint { get; set; }
+        public string be_endpoint { get; set; }
 
         public string MaxTimeout { get; set; }
         public string IdleTimeout { get; set; }

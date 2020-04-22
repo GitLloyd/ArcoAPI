@@ -1,16 +1,13 @@
 ﻿using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
+
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,13 +15,13 @@ namespace ArcoApi.Services
 {
     public static class AuthenticationService
     {       
-        public static async Task<IServiceCollection> AddTokenAuthentication(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddTokenAuthentication(this IServiceCollection services, IConfiguration config)
         {
             IConfigurationSection jwtConfig = config.GetSection("JwtConfig");
             string wellKnownEndpoint = config.GetSection("WellKnownEndpoint").Value;
 
             var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(wellKnownEndpoint, new OpenIdConnectConfigurationRetriever());
-            OpenIdConnectConfiguration openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
+            OpenIdConnectConfiguration openIdConfig = configurationManager.GetConfigurationAsync(CancellationToken.None).Result;
 
             services.AddAuthentication(options =>
             {
@@ -35,14 +32,22 @@ namespace ArcoApi.Services
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer = true, // Valida il claim "iss"
                     ValidIssuer = jwtConfig.GetSection("Issuer").Value,
-                    ValidateAudience = true,
+                    ValidateAudience = false, // Valida il claim "aud"
                     ValidAudience = jwtConfig.GetSection("Audience").Value,
-                    RequireExpirationTime = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
+                    RequireExpirationTime = true, // Richiede la presenza del claim "exp"
+                    ValidateLifetime = true, // Valuta se il token è scaduto
+                    ValidateIssuerSigningKey = true, 
                     IssuerSigningKeys = openIdConfig.SigningKeys
+                };
+                options.Events = new JwtBearerEvents
+                {
+                    OnAuthenticationFailed = context => { throw context.Exception; },
+                    OnForbidden = context => { throw new Exception("Forbidden"); },
+                    OnTokenValidated = context => { throw new Exception("TokenValidated"); },
+                    OnMessageReceived = context => { return Task.CompletedTask; },
+                    OnChallenge = context => { return Task.CompletedTask; }
                 };
             }); 
 

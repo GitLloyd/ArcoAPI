@@ -1,30 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using ArcoApi.Business;
 using ArcoApi.Business.QlikBusiness;
 using ArcoApi.Interfaces;
 using ArcoApi.Interfaces.QlikBusiness;
-using ArcoApi.Middlewares.ExtensionMethods;
 using ArcoApi.Repositories;
 using ArcoApi.Services;
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Protocols;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Microsoft.IdentityModel.Tokens;
+
 using Serilog;
 
 namespace ArcoApi
@@ -39,7 +26,7 @@ namespace ArcoApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public async void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             Log.Debug("Configurazione dei servizi:\nAggiunta delle dipendenze...");
             services.AddSingleton<IBusinessDatiPraticaAudit, BusinessDatiPraticaAudit>();
@@ -60,7 +47,7 @@ namespace ArcoApi
             services.AddDbContext<QlikDbContext>(options => options.UseSqlServer(connectionString));
 
             Log.Debug("Database impostato.\nAggiunta dell'autenticazione tramite token...");
-            await services.AddTokenAuthentication(Configuration);
+            services.AddTokenAuthentication(Configuration);
             Log.Debug("Autenticazione con token impostata.");
         }
 
@@ -71,7 +58,7 @@ namespace ArcoApi
             {
                 app.UseDeveloperExceptionPage();
 
-                app.UseAutoAuthentication();
+                //app.UseAutoAuthentication();
             }
 
             app.UseHttpsRedirection();

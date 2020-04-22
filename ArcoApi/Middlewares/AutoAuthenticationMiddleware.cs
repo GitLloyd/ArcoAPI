@@ -34,7 +34,7 @@ namespace AuthTest.API.Middleware
 
             string wellKnownEndpoint = config.GetSection("WellKnownEndpoint").Value;
 
-            string token = await GenerateSecurityToken(expDate, issuer, audience, wellKnownEndpoint);
+            string token = GenerateSecurityToken(expDate, issuer, audience, wellKnownEndpoint);
             token = "Bearer " + token;
 
             context.Request.Headers.Remove("Authorization");
@@ -46,11 +46,11 @@ namespace AuthTest.API.Middleware
             await _next(context);
         }
 
-        private async Task<string> GenerateSecurityToken(string _expDate, string _issuer, string _audience, string _wellKnownEndpoint)
+        private string GenerateSecurityToken(string _expDate, string _issuer, string _audience, string _wellKnownEndpoint)
         {
             Log.Warning("Generazione SecurityToken...\nRichiesta OIDC Configuration...");
             var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(_wellKnownEndpoint, new OpenIdConnectConfigurationRetriever());
-            OpenIdConnectConfiguration openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
+            OpenIdConnectConfiguration openIdConfig = configurationManager.GetConfigurationAsync(CancellationToken.None).Result;
             Log.Debug("OIDC Configuration ottenuta.\nImpostazione del token...");
             JsonWebKey key = openIdConfig.JsonWebKeySet.Keys.Last();
 
@@ -59,10 +59,10 @@ namespace AuthTest.API.Middleware
                 Subject = new ClaimsIdentity(),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 Audience = _audience,
-                Issuer = _issuer, 
-                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature),
-            };
-
+                Issuer = _issuer 
+                //SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.RsaSha256Signature),
+            };        
+                
             var tokenHandler = new JwtSecurityTokenHandler();
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
             Log.Debug("Token generato.");
