@@ -56,7 +56,7 @@ namespace AuthTest.API.Middleware
                 Subject = new ClaimsIdentity(),
                 Expires = DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 Audience = _audience,
-                Issuer = _issuer, 
+                Issuer = _issuer,
                 SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.RsaSha256Signature)
             };
 

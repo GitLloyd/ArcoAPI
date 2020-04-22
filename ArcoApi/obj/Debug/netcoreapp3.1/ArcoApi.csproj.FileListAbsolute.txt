@@ -122,8 +122,6 @@ F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\runtimes\
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.csprojAssemblyReference.cache
-F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.csproj.CoreCompileInputs.cache
-F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.MvcApplicationPartsAssemblyInfo.cache
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.AssemblyInfoInputs.cache
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.AssemblyInfo.cs
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.RazorTargetAssemblyInfo.cache
@@ -133,3 +131,5 @@ F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\staticweb
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.dll
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.pdb
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.genruntimeconfig.cache
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.dll
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Serilog.Extensions.Logging.dll

@@ -21,18 +21,11 @@ namespace ArcoApi.Services
         public static async Task<IServiceCollection> AddTokenAuthentication(this IServiceCollection services, IConfiguration config)
         {
             IConfigurationSection jwtConfig = config.GetSection("JwtConfig");
-            byte[] secret = Encoding.ASCII.GetBytes(jwtConfig.GetSection("Secret").Value);
-            string wellknownEndpoint = config.GetSection("WellKnownEndpoint").Value;
+            string wellKnownEndpoint = config.GetSection("WellKnownEndpoint").Value;
 
-            AuthenticationBuilder builder = services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            });
-
-            var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(wellknownEndpoint, new OpenIdConnectConfigurationRetriever());
+            var configurationManager = new ConfigurationManager<OpenIdConnectConfiguration>(wellKnownEndpoint, new OpenIdConnectConfigurationRetriever());
             OpenIdConnectConfiguration openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None);
-            
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
