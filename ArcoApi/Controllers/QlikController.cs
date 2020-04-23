@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using ArcoApi.Interfaces;
-using Microsoft.AspNetCore.Mvc;
-using ArcoApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Mvc;
+
+using ArcoApi.Interfaces;
+using ArcoApi.Models;
 using ArcoApi.Models.JSON;
 using ArcoApi.Interfaces.QlikBusiness;
-using Microsoft.AspNetCore.Authorization;
+
+using Serilog;
 
 namespace ArcoApi.Controllers
 {
@@ -149,28 +148,42 @@ namespace ArcoApi.Controllers
         [Route("domandavalore")]
         public RisultatoElementiPagina<ViewQlikDomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Debug($"Ricevuta richiesta da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikDomandaValore>();
             try
             {
+                Log.Debug($"Richiesti {numeroElementi} dalla pagina {indicePagina}.");
                 result.ElementiPagina = _qlikBusiness.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
+                Log.Debug("Elementi ottenuti correttamente.");
             }
             catch (ArgumentException argEx)
             {
+                string errore = $"Errore nei parametri ricevuti: {argEx.Message}";
+
+                Log.Error(errore);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = errore;
             }
             catch (SqlException sqlEx)
             {
+                string errore = $"Errore nel generare SQL: {sqlEx.Message}";
+
+                Log.Error(errore);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = errore;
             }
             catch (Exception ex)
             {
+                string errore = $"Errore generico: {ex.Message}";
+
+                Log.Error(errore);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = errore;
             }
 
             return result;

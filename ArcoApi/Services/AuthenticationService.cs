@@ -32,12 +32,12 @@ namespace ArcoApi.Services
             {
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateIssuer = true, // Valida il claim "iss"
+                    ValidateIssuer = false, // Valida il claim "iss"
                     ValidIssuer = jwtConfig.GetSection("Issuer").Value,
                     ValidateAudience = false, // Valida il claim "aud"
                     ValidAudience = jwtConfig.GetSection("Audience").Value,
-                    RequireExpirationTime = true, // Richiede la presenza del claim "exp"
-                    ValidateLifetime = true, // Valuta se il token è scaduto
+                    RequireExpirationTime = false, // Richiede la presenza del claim "exp"
+                    ValidateLifetime = false, // Valuta se il token è scaduto
                     ValidateIssuerSigningKey = true, 
                     IssuerSigningKeys = openIdConfig.SigningKeys
                 };
@@ -45,7 +45,7 @@ namespace ArcoApi.Services
                 {
                     OnAuthenticationFailed = context => { throw context.Exception; },
                     OnForbidden = context => { throw new Exception("Forbidden"); },
-                    OnTokenValidated = context => { throw new Exception("TokenValidated"); },
+                    //OnTokenValidated = context => { throw new Exception("TokenValidated"); },
                     OnMessageReceived = context => { return Task.CompletedTask; },
                     OnChallenge = context => { return Task.CompletedTask; }
                 };
