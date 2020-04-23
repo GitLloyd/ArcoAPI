@@ -1,0 +1,36 @@
+2020-04-23 14:36:29.994 +02:00 [DBG] Configurazione dei servizi:
+Aggiunta delle dipendenze...
+2020-04-23 14:36:29.999 +02:00 [DBG] Dipendenze configurate.
+Aggiunta dei controller...
+2020-04-23 14:36:30.033 +02:00 [DBG] Controller creati.
+Aggiunta del database...
+2020-04-23 14:36:30.035 +02:00 [DBG] Database impostato.
+Aggiunta dell'autenticazione tramite token...
+2020-04-23 14:36:31.782 +02:00 [DBG] Autenticazione con token impostata.
+2020-04-23 14:36:31.811 +02:00 [DBG] Hosting starting
+2020-04-23 14:36:31.842 +02:00 [INF] User profile is available. Using 'C:\Users\valel\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2020-04-23 14:36:31.848 +02:00 [DBG] Reading data from file 'C:\Users\valel\AppData\Local\ASP.NET\DataProtection-Keys\key-286f4169-127b-4269-9f35-3ce0dd5ddcba.xml'.
+2020-04-23 14:36:31.861 +02:00 [DBG] Found key {286f4169-127b-4269-9f35-3ce0dd5ddcba}.
+2020-04-23 14:36:31.868 +02:00 [DBG] Considering key {286f4169-127b-4269-9f35-3ce0dd5ddcba} with expiration date 2020-07-02 09:34:13Z as default key.
+2020-04-23 14:36:31.871 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2020-04-23 14:36:31.872 +02:00 [DBG] Decrypting secret element using Windows DPAPI.
+2020-04-23 14:36:31.873 +02:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=3.1.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2020-04-23 14:36:31.874 +02:00 [DBG] Opening CNG algorithm 'AES' from provider 'null' with chaining mode CBC.
+2020-04-23 14:36:31.876 +02:00 [DBG] Opening CNG algorithm 'SHA256' from provider 'null' with HMAC.
+2020-04-23 14:36:31.878 +02:00 [DBG] Using key {286f4169-127b-4269-9f35-3ce0dd5ddcba} as the default key.
+2020-04-23 14:36:31.878 +02:00 [DBG] Key ring with default key {286f4169-127b-4269-9f35-3ce0dd5ddcba} was loaded during application startup.
+2020-04-23 14:36:31.957 +02:00 [DBG] Loaded hosting startup assembly ArcoApi
+2020-04-23 14:36:31.958 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-04-23 14:36:31.958 +02:00 [INF] Hosting environment: Development
+2020-04-23 14:36:31.958 +02:00 [INF] Content root path: F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi
+2020-04-23 14:36:31.958 +02:00 [DBG] Hosting started
+2020-04-23 14:36:31.977 +02:00 [INF] Request starting HTTP/1.1 POST https://localhost:44382/viewqlikapi/domandavalore?numeroElementi=100&indicePagina=2  0
+2020-04-23 14:36:31.978 +02:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2020-04-23 14:36:31.997 +02:00 [DBG] 1 candidate(s) found for the request path '/viewqlikapi/domandavalore'
+2020-04-23 14:36:31.999 +02:00 [DBG] Endpoint 'ArcoApi.Controllers.QlikController.DomandaValoreGetElementiPagina (ArcoApi)' with route pattern 'viewqlikapi/domandavalore' is valid for the request path '/viewqlikapi/domandavalore'
+2020-04-23 14:36:31.999 +02:00 [DBG] Request matched endpoint 'ArcoApi.Controllers.QlikController.DomandaValoreGetElementiPagina (ArcoApi)'
+2020-04-23 14:36:32.075 +02:00 [INF] Executing endpoint 'ArcoApi.Controllers.QlikController.DomandaValoreGetElementiPagina (ArcoApi)'
+2020-04-23 14:36:32.198 +02:00 [DBG] Ricevuta richiesta da "PostmanRuntime/7.24.1".
+2020-04-23 14:36:32.198 +02:00 [DBG] Richiesti 100 dalla pagina 2.
+2020-04-23 14:36:35.520 +02:00 [DBG] Elementi ottenuti correttamente.
+2020-04-23 14:36:35.544 +02:00 [INF] Execute

@@ -8,8 +8,6 @@ namespace ArcoApi.Interfaces
 {
     public interface IBusinessDatiPraticaAudit
     {
-        public IList<DatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina);
-
-        public string DatiPraticaAuditGetTotaleElementiVista();
+        
     }
 }

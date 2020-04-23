@@ -1,17 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ArcoApi.Business;
+using ArcoApi.Business.QlikBusiness;
 using ArcoApi.Interfaces;
+using ArcoApi.Interfaces.QlikBusiness;
+using ArcoApi.Repositories;
+using ArcoApi.Services;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+using Serilog;
 
 namespace ArcoApi
 {
@@ -27,13 +28,27 @@ namespace ArcoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Log.Debug("Configurazione dei servizi:\nAggiunta delle dipendenze...");
             services.AddSingleton<IBusinessDatiPraticaAudit, BusinessDatiPraticaAudit>();
             services.AddSingleton<IBusinessAuditOperativoAccesso, BusinessAuditOperativoAccesso>();
             services.AddSingleton<IBusinessPraticaGruppo, BusinessPraticaGruppo>();
             services.AddSingleton<IBusinessRilievo, BusinessRilievo>();
             services.AddSingleton<IBusinessTeam, BusinessTeam>();
+            services.AddSingleton<IBusinessDomandaValore, BusinessDomandaValore>();
+            services.AddSingleton<IBusinessSede, BusinessSede>();
+            services.AddScoped<IQlikBusiness, QlikBusiness>();
 
+            Log.Debug("Dipendenze configurate.\nAggiunta dei controller...");
             services.AddControllers();
+
+            // Database
+            Log.Debug("Controller creati.\nAggiunta del database...");
+            string connectionString = Configuration.GetConnectionString("ViewQlikDatabase");
+            services.AddDbContext<QlikDbContext>(options => options.UseSqlServer(connectionString));
+
+            Log.Debug("Database impostato.\nAggiunta dell'autenticazione tramite token...");
+            services.AddTokenAuthentication(Configuration);
+            Log.Debug("Autenticazione con token impostata.");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +57,8 @@ namespace ArcoApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                //app.UseAutoAuthentication();
             }
 
             app.UseHttpsRedirection();
