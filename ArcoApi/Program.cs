@@ -27,7 +27,7 @@ namespace ArcoApi
                 .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 //.ReadFrom.Configuration(Configuration)
-                .WriteTo.File(path: "Log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+                .WriteTo.File(path: "Logs\\Log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
                 .Enrich.FromLogContext()
                 .CreateLogger();
 
