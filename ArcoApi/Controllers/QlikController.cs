@@ -31,29 +31,39 @@ namespace ArcoApi.Controllers
         [Route("datipraticaaudit")]
         public RisultatoElementiPagina<ViewQlikDatiPraticaAudit> DatiPraticaAuditGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikDatiPraticaAudit alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikDatiPraticaAudit>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.DatiPraticaAuditGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -70,29 +80,39 @@ namespace ArcoApi.Controllers
         [Route("team")]
         public RisultatoElementiPagina<ViewQlikTeam> TeamGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikTeam alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikTeam>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.TeamGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -109,29 +129,39 @@ namespace ArcoApi.Controllers
         [Route("auditoperativoaccesso")]
         public RisultatoElementiPagina<ViewQlikAuditOperativoAccesso> AuditOperativoAccessoGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikAuditOperativoAccesso alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikAuditOperativoAccesso>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.AuditOperativoAccessoAuditGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -149,41 +179,38 @@ namespace ArcoApi.Controllers
         public RisultatoElementiPagina<ViewQlikDomandaValore> DomandaValoreGetElementiPagina(int numeroElementi, int indicePagina)
         {
             bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
-            Log.Debug($"Ricevuta richiesta da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di QlikDomandaValore alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
 
             var result = new RisultatoElementiPagina<ViewQlikDomandaValore>();
+
             try
             {
-                Log.Debug($"Richiesti {numeroElementi} dalla pagina {indicePagina}.");
                 result.ElementiPagina = _qlikBusiness.DomandaValoreGetElementiPagina(numeroElementi, indicePagina);
-                Log.Debug("Elementi ottenuti correttamente.");
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
-                string errore = $"Errore nei parametri ricevuti: {argEx.Message}";
-
-                Log.Error(errore);
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = errore;
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
-                string errore = $"Errore nel generare SQL: {sqlEx.Message}";
-
-                Log.Error(errore);
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = errore;
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
-                string errore = $"Errore generico: {ex.Message}";
-
-                Log.Error(errore);
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = errore;
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -200,29 +227,39 @@ namespace ArcoApi.Controllers
         [Route("praticagruppo")]
         public RisultatoElementiPagina<ViewQlikPraticaGruppo> PraticaGruppoGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikPraticaGruppo alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikPraticaGruppo>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.PraticaGruppoAuditGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -239,29 +276,39 @@ namespace ArcoApi.Controllers
         [Route("rilievo")]
         public RisultatoElementiPagina<ViewQlikRilievo> RilievoGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikRilievo alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikRilievo>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.RilievoGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -278,29 +325,39 @@ namespace ArcoApi.Controllers
         [Route("sede")]
         public RisultatoElementiPagina<ViewQlikSede> SedeGetElementiPagina(int numeroElementi, int indicePagina)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di {numeroElementi} elementi di ViewQlikSede alla pagina {indicePagina} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoElementiPagina<ViewQlikSede>();
 
             try
             {
                 result.ElementiPagina = _qlikBusiness.SedeGetElementiPagina(numeroElementi, indicePagina);
+                Log.Information("Risultati ottenuti. Invio della risposta al client.");
             }
             catch (ArgumentException argEx)
             {
+                string messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 400;
                 result.RisultatoRichiesta.CodiceMessaggio = 501;
-                result.RisultatoRichiesta.Messaggio = $"Errore nei parametri ricevuti: {argEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (SqlException sqlEx)
             {
+                string messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 502;
-                result.RisultatoRichiesta.Messaggio = $"Errore nel generare SQL: {sqlEx.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
             catch (Exception ex)
             {
+                string messaggio = $"Errore generico: {ex.Message}";
+                Log.Error(messaggio);
                 Response.StatusCode = 500;
                 result.RisultatoRichiesta.CodiceMessaggio = 500;
-                result.RisultatoRichiesta.Messaggio = $"Errore generico: {ex.Message}";
+                result.RisultatoRichiesta.Messaggio = messaggio;
             }
 
             return result;
@@ -317,6 +374,9 @@ namespace ArcoApi.Controllers
         [Route("totaleelementivista")]
         public RisultatoTotaleElementiVista GetTotaleElementiVista(string vista)
         {
+            bool validUserAgent = Request.Headers.TryGetValue("User-Agent", out var userAgent);
+            Log.Information($"Ricevuta richiesta di numero totale elementi di {vista} da \"{(validUserAgent ? userAgent.ToString() : "User-Agent non trovato")}\".");
+
             var result = new RisultatoTotaleElementiVista();
 
             switch (vista)
@@ -343,11 +403,15 @@ namespace ArcoApi.Controllers
                     result.TotaleElementiVista = SedeGetTotaleElementiVista();
                     break;
                 default:
-                    result.RisultatoRichiesta.Messaggio = $"{vista} non corrisponde ad alcuna vista presente nel DB.";
+                    string messaggio = $"{vista} non corrisponde ad alcuna vista presente nel DB.";
+                    Log.Warning(messaggio);
+                    result.RisultatoRichiesta.Messaggio = messaggio;
                     result.RisultatoRichiesta.CodiceMessaggio = 501;
                     Response.StatusCode = 400;
                     break;
             };
+
+            Log.Information("Risultati ottenuti. Invio della risposta al client.");
 
             return result;
         }

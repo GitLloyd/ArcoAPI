@@ -24,16 +24,16 @@ namespace ArcoApi
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .ReadFrom.Configuration(Configuration)
+                .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+                //.ReadFrom.Configuration(Configuration)
+                .WriteTo.File(path: "Log.txt", rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
                 .Enrich.FromLogContext()
-                .WriteTo.Debug()
-                .WriteTo.Console(
-                    outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {Properties:j}{NewLine}{Exception}")
                 .CreateLogger();
 
             try
             {
-                Log.Information("Getting the motors running...");
+                Log.Information("Avvio dell'applicazione...");
 
                 CreateHostBuilder(args).Build().Run();
             }
@@ -49,8 +49,9 @@ namespace ArcoApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .UseSerilog((hostingContext, loggerConfiguration) =>
-                          loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
+                .UseSerilog()
+                //.UseSerilog((hostingContext, loggerConfiguration) =>
+                //          loggerConfiguration.ReadFrom.Configuration(hostingContext.Configuration))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -28,7 +28,7 @@ namespace ArcoApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            Log.Debug("Configurazione dei servizi:\nAggiunta delle dipendenze...");
+            Log.Debug("Configurazione dei servizi avviata. Aggiunta delle dipendenze...");
             services.AddSingleton<IBusinessDatiPraticaAudit, BusinessDatiPraticaAudit>();
             services.AddSingleton<IBusinessAuditOperativoAccesso, BusinessAuditOperativoAccesso>();
             services.AddSingleton<IBusinessPraticaGruppo, BusinessPraticaGruppo>();
@@ -38,15 +38,15 @@ namespace ArcoApi
             services.AddSingleton<IBusinessSede, BusinessSede>();
             services.AddScoped<IQlikBusiness, QlikBusiness>();
 
-            Log.Debug("Dipendenze configurate.\nAggiunta dei controller...");
+            Log.Debug("Dipendenze configurate. Aggiunta dei controller...");
             services.AddControllers();
 
             // Database
-            Log.Debug("Controller creati.\nAggiunta del database...");
+            Log.Debug("Controller creati. Aggiunta del database...");
             string connectionString = Configuration.GetConnectionString("ViewQlikDatabase");
             services.AddDbContext<QlikDbContext>(options => options.UseSqlServer(connectionString));
 
-            Log.Debug("Database impostato.\nAggiunta dell'autenticazione tramite token...");
+            Log.Debug("Database impostato. Aggiunta dell'autenticazione tramite token...");
             services.AddTokenAuthentication(Configuration);
             Log.Debug("Autenticazione con token impostata.");
         }
