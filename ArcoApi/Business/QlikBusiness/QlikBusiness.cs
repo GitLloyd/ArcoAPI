@@ -1,8 +1,10 @@
-﻿using ArcoApi.Interfaces;
+﻿using ArcoApi.Cryptography;
+using ArcoApi.Interfaces;
 using ArcoApi.Interfaces.QlikBusiness;
 using ArcoApi.Models;
 using ArcoApi.Repositories;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
 using System.Collections.Generic;
@@ -13,11 +15,13 @@ namespace ArcoApi.Business.QlikBusiness
 {
     public class QlikBusiness : IQlikBusiness
     {
-        private readonly QlikDbContext _qlikDbContext;
+        private readonly QlikDbContext qlikDbContext;
+        private readonly IConfiguration config;
 
-        public QlikBusiness(QlikDbContext qlikDbContext)
+        public QlikBusiness(QlikDbContext _qlikDbContext, IConfiguration configuration)
         {
-            _qlikDbContext = qlikDbContext;
+            qlikDbContext = _qlikDbContext;
+            config = configuration;
         }
 
         #region Team
@@ -44,7 +48,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikTeam> result = _qlikDbContext.ViewQlikTeam
+                IList<ViewQlikTeam> result = qlikDbContext.ViewQlikTeam
                                                            .OrderByDescending(dati => dati.IdAuditOperativo)
                                                            .Skip(elementiDaSaltare)
                                                            .Take(numeroElementi)
@@ -68,7 +72,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikTeam.Count();
+            int count = qlikDbContext.ViewQlikTeam.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -101,7 +105,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikRilievo> result = _qlikDbContext.ViewQlikRilievo
+                IList<ViewQlikRilievo> result = qlikDbContext.ViewQlikRilievo
                                                               .OrderByDescending(dati => dati.IdAuditOperativo)
                                                               .Skip(elementiDaSaltare)
                                                               .Take(numeroElementi)
@@ -125,7 +129,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikRilievo.Count();
+            int count = qlikDbContext.ViewQlikRilievo.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -158,7 +162,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikSede> result = _qlikDbContext.ViewQlikSede
+                IList<ViewQlikSede> result = qlikDbContext.ViewQlikSede
                                                            .OrderByDescending(dati => dati.CodiceSede)
                                                            .Skip(elementiDaSaltare)
                                                            .Take(numeroElementi)
@@ -182,7 +186,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikSede.Count();
+            int count = qlikDbContext.ViewQlikSede.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -215,7 +219,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikPraticaGruppo> result = _qlikDbContext.ViewQlikPraticaGruppo
+                IList<ViewQlikPraticaGruppo> result = qlikDbContext.ViewQlikPraticaGruppo
                                                                     .OrderByDescending(dati => dati.IdAuditOperativo)
                                                                     .Skip(elementiDaSaltare)
                                                                     .Take(numeroElementi)
@@ -239,7 +243,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikPraticaGruppo.Count();
+            int count = qlikDbContext.ViewQlikPraticaGruppo.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -272,7 +276,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikDomandaValore> result = _qlikDbContext.ViewQlikDomandaValore
+                IList<ViewQlikDomandaValore> result = qlikDbContext.ViewQlikDomandaValore
                                                                     .OrderByDescending(dati => dati.IdAuditOperativo)
                                                                     .Skip(elementiDaSaltare)
                                                                     .Take(numeroElementi)
@@ -296,7 +300,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikDomandaValore.Count();
+            int count = qlikDbContext.ViewQlikDomandaValore.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -330,11 +334,36 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikDatiPraticaAudit> result = _qlikDbContext.ViewQlikDatiPraticaAudit
-                                                                       .OrderByDescending(dati => dati.IdAuditOperativo)
-                                                                       .Skip(elementiDaSaltare)
-                                                                       .Take(numeroElementi)
-                                                                       .ToList();
+                List<ViewQlikDatiPraticaAudit> result = qlikDbContext.ViewQlikDatiPraticaAudit
+                                                                     .OrderByDescending(dati => dati.Audit)
+                                                                     .Skip(elementiDaSaltare)
+                                                                     .Take(numeroElementi)
+                                                                     .Where(item => item.Infortunio != null)
+                                                                     .ToList();
+
+                string richiestaDecifratura = config.GetSection("RichiestaDecifratura").Value;
+                if (Convert.ToBoolean(richiestaDecifratura))
+                {
+                    Log.Information("Richiesta decifratura dei dati...");
+                    result.ForEach(item =>
+                    {
+                        if (item.NumeroCaso != null)          item.NumeroCaso = QlikCryptography.DecryptString(item.NumeroCaso);
+                        if (item.CodiceSede != null)          item.CodiceSede = QlikCryptography.DecryptString(item.CodiceSede);
+                        if (item.Infortunio != null)          item.Infortunio = QlikCryptography.DecryptString(item.Infortunio);
+                        if (item.Sede != null)                item.Sede = QlikCryptography.DecryptString(item.Sede);
+                        if (item.Pratica != null)             item.Pratica = QlikCryptography.DecryptString(item.Pratica);
+                        if (item.Tipologia != null)           item.Tipologia = QlikCryptography.DecryptString(item.Tipologia);
+                        if (item.NumeroPratica != null)       item.NumeroPratica = QlikCryptography.DecryptString(item.NumeroPratica);
+                        if (item.NumeroProgrProgetto != null) item.NumeroProgrProgetto = QlikCryptography.DecryptString(item.NumeroProgrProgetto);
+                        if (item.RagioneSociale != null)      item.RagioneSociale = QlikCryptography.DecryptString(item.RagioneSociale);
+                        if (item.CodiceDitta != null)         item.CodiceDitta = QlikCryptography.DecryptString(item.CodiceDitta);
+                        if (item.Ditta != null)               item.Ditta = QlikCryptography.DecryptString(item.Ditta);
+                        if (item.Matricola != null)           item.Matricola = QlikCryptography.DecryptString(item.Matricola);
+                        if (item.NumeroCasoFornitura != null) item.NumeroCasoFornitura = QlikCryptography.DecryptString(item.NumeroCasoFornitura);
+                        if (item.NumeroDomanda != null)       item.NumeroDomanda = QlikCryptography.DecryptString(item.NumeroDomanda);
+                    });
+                    Log.Information("Dati decifrati.");
+                }                              
 
                 Log.Information("Chiamata andata a buon fine. Restituzione dei risultati...");
 
@@ -354,7 +383,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikDatiPraticaAudit.Count();
+            int count = qlikDbContext.ViewQlikDatiPraticaAudit.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");
@@ -387,7 +416,7 @@ namespace ArcoApi.Business.QlikBusiness
 
                 Log.Information("Chiamata al database per l'ottenimento degli elementi richiesti...");
 
-                IList<ViewQlikAuditOperativoAccesso> result = _qlikDbContext.ViewQlikAuditOperativoAccesso
+                IList<ViewQlikAuditOperativoAccesso> result = qlikDbContext.ViewQlikAuditOperativoAccesso
                                                                             .OrderByDescending(dati => dati.IdAuditOperativo)
                                                                             .Skip(elementiDaSaltare)
                                                                             .Take(numeroElementi)
@@ -411,7 +440,7 @@ namespace ArcoApi.Business.QlikBusiness
         {
             Log.Information("Chiamata al database per il conteggio degli elementi...");
 
-            int count = _qlikDbContext.ViewQlikAuditOperativoAccesso.Count();
+            int count = qlikDbContext.ViewQlikAuditOperativoAccesso.Count();
             string totaleElementi = count.ToString();
 
             Log.Information($"Trovati {totaleElementi} elementi. Restituzione dell'informazione...");

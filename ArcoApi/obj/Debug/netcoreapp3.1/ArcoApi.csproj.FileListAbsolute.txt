@@ -145,3 +145,4 @@ F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.d
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.pdb
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.genruntimeconfig.cache
 F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\obj\Debug\netcoreapp3.1\ArcoApi.csprojAssemblyReference.cache
+F:\Visual Studio 2019\Progetti\ArcoApi\ArcoApi\bin\Debug\netcoreapp3.1\Documentation\ArcoAPI Test.postman_collection.json

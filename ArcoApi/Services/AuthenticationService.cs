@@ -44,10 +44,10 @@ namespace ArcoApi.Services
                 options.Events = new JwtBearerEvents
                 {
                     OnAuthenticationFailed = context => { throw context.Exception; },
-                    OnForbidden = context => { throw new Exception("Forbidden"); },
+                    //OnForbidden = context => { throw new Exception("Forbidden"); },
                     //OnTokenValidated = context => { throw new Exception("TokenValidated"); },
-                    OnMessageReceived = context => { return Task.CompletedTask; },
-                    OnChallenge = context => { return Task.CompletedTask; }
+                    //OnMessageReceived = context => { return Task.CompletedTask; },
+                    //OnChallenge = context => { return Task.CompletedTask; }
                 };
             }); 
 
