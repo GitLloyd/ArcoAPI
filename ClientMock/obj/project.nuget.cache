@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "7aJKxOchC9S3YFhnSfg1nnNgQq72sbmcaT23BlhyWyY2MxpmqFOYJS0JiLRZSxoDWrZ7FhOr3q2psGQX3yse4g==",
+  "success": true,
+  "projectFilePath": "F:\\Visual Studio 2019\\Progetti\\ArcoApi\\ClientMock\\ClientMock.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\valel\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

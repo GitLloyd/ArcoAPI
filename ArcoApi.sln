@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArcoApi", "ArcoApi\ArcoApi.csproj", "{5288D531-0DB6-404A-83F2-A926C6321271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityProviderMock", "IdentityProviderMock\IdentityProviderMock.csproj", "{B955CBA0-C6AB-4E65-80AE-126630BEBD8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityProviderMock", "IdentityProviderMock\IdentityProviderMock.csproj", "{B955CBA0-C6AB-4E65-80AE-126630BEBD8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientMock", "ClientMock\ClientMock.csproj", "{4CA775EF-838B-4AF8-B10C-5E5E61849A52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B955CBA0-C6AB-4E65-80AE-126630BEBD8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B955CBA0-C6AB-4E65-80AE-126630BEBD8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B955CBA0-C6AB-4E65-80AE-126630BEBD8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CA775EF-838B-4AF8-B10C-5E5E61849A52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CA775EF-838B-4AF8-B10C-5E5E61849A52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CA775EF-838B-4AF8-B10C-5E5E61849A52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CA775EF-838B-4AF8-B10C-5E5E61849A52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

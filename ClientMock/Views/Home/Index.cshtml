@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container text-center">  
+    <h1 class="display-2">Totale elementi nella vista</h1>
+    <form action="/Home/SendRequest">        
+        <div class="form-group">
+            <select id="viste" name="vista" class="form-control">
+                <option value="KO vista">Test KO per vista non trovata</option>
+                <option value="ViewQlikAuditOperativoAccesso">Audit Operativo Accesso</option>
+                <option value="ViewQlikDatiPraticaAudit">Dati Pratica Audit</option>
+                <option value="ViewQlikDomandaValore">Domanda Valore</option>
+                <option value="ViewQlikPraticaGruppo">Pratica Gruppo</option>
+                <option value="ViewQlikRilievo">Rilievo</option>
+                <option value="ViewQlikSede">Sede</option>
+                <option value="ViewQlikTeam">Team</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Invia richiesta" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <h1 class="display-4">@ViewData["Result"]</h1>
+        </div>
+    </form>
+</div>

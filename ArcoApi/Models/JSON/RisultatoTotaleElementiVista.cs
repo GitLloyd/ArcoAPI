@@ -7,7 +7,7 @@ namespace ArcoApi.Models.JSON
 {
     public class RisultatoTotaleElementiVista
     {
-        public RisultatoRichiesta RisultatoRichiesta { get; set; }
+        public RisultatoRichiesta RisultatoRichiesta { get; set; } = new RisultatoRichiesta();
 
         public string TotaleElementiVista { get; set; } = "0";
     }

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace ArcoApi.Services
 {
     public static class AuthenticationService
-    {       
+    {
         public static IServiceCollection AddTokenAuthentication(this IServiceCollection services, IConfiguration config)
         {
             IConfigurationSection jwtConfig = config.GetSection("JwtConfig");
@@ -38,18 +38,18 @@ namespace ArcoApi.Services
                     ValidAudience = jwtConfig.GetSection("Audience").Value,
                     RequireExpirationTime = false, // Richiede la presenza del claim "exp"
                     ValidateLifetime = false, // Valuta se il token è scaduto
-                    ValidateIssuerSigningKey = true, 
+                    ValidateIssuerSigningKey = true,
                     IssuerSigningKeys = openIdConfig.SigningKeys
                 };
                 options.Events = new JwtBearerEvents
                 {
-                    OnAuthenticationFailed = context => { throw context.Exception; },
-                    //OnForbidden = context => { throw new Exception("Forbidden"); },
+                    OnAuthenticationFailed = context => { string s = "";  throw context.Exception; },
+                    OnForbidden = context => { throw new Exception("Forbidden"); },
                     //OnTokenValidated = context => { throw new Exception("TokenValidated"); },
-                    //OnMessageReceived = context => { return Task.CompletedTask; },
-                    //OnChallenge = context => { return Task.CompletedTask; }
+                    OnMessageReceived = context => { return Task.CompletedTask; },
+                    OnChallenge = context => { return Task.CompletedTask; }
                 };
-            }); 
+            });
 
             return services;
         }
